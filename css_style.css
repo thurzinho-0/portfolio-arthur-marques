@@ -1286,6 +1286,289 @@ footer strong {
     }
 }
 
+/* ═════════════════════════════════════════════════════════════════════════
+   CORREÇÕES CROSS-BROWSER (Opera, Safari, Firefox, Edge)
+   Data/Hora UTC: 2025-11-16 07:42:11
+   Login: theusXS8292
+   ═════════════════════════════════════════════════════════════════════════
+*/
+
+/* ═══ FIX 1: Opera e Safari - Webkit Prefixes ═══ */
+.text-gradient,
+.logo-glitch,
+.section-title {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -moz-background-clip: text;          /* Firefox */
+    -o-background-clip: text;            /* Opera */
+}
+
+/* ═══ FIX 2: Opera - Grid Layout Fix ═══ */
+.about-content,
+.contact-content,
+.hero-content {
+    display: -ms-grid;                   /* IE 11 */
+    display: grid;
+}
+
+/* Opera específico - força minmax */
+@supports (-webkit-appearance:none) {
+    .about-content {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) !important;
+    }
+}
+
+/* ═══ FIX 3: Opera - Overflow Hidden Global ═══ */
+html,
+body,
+main,
+.portfolio-swiper,
+.swiper-wrapper,
+.swiper-slide {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+/* ═══ FIX 4: Opera/Safari - Flexbox Fix ═══ */
+.hero-content,
+.about-content,
+.contact-content,
+.projects-grid {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ═══ FIX 5: Todos os elementos - Previne Overflow ═══ */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ═══ FIX 6: Opera - Scroll Suave ═══ */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden !important;
+}
+
+/* ═══ FIX 7: Opera/Firefox - Grid Auto Flow ═══ */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+    overflow: hidden;
+}
+
+/* ═══ FIX 8: Sidebar - Opera Fix ═══ */
+.sidebar {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    min-width: var(--sidebar-width);
+    max-width: var(--sidebar-width);
+}
+
+/* ═══ FIX 9: Swiper Container - Opera ═══ */
+.portfolio-swiper {
+    width: 100%;
+    overflow: hidden !important;
+}
+
+.swiper-slide {
+    overflow-y: auto;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ═══ FIX 10: Terminal/Cards - Opera Width Fix ═══ */
+.terminal-window,
+.project-card,
+.skill-card,
+.exp-card,
+.contact-item {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* ═══ FIX 11: Images - Responsivo em todos navegadores ═══ */
+img,
+video,
+iframe,
+embed,
+object {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+}
+
+/* ═══ FIX 12: Opera - Section Wrapper Padding Fix ═══ */
+.section-wrapper {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+}
+
+/* ═══ FIX 13: Opera/Safari - Transform Performance ═══ */
+.project-card,
+.skill-card,
+.nav-links li {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* ═══ FIX 14: Opera - Grid Gap Fallback ═══ */
+@supports not (gap: var(--space-xl)) {
+    .about-content > *,
+    .contact-content > *,
+    .projects-grid > * {
+        margin: var(--space-md);
+    }
+}
+
+/* ═══ FIX 15: CORREÇÃO ESPECÍFICA OPERA - FORÇA LARGURA ═══ */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    /* Opera 15+ e Chrome */
+    .about-content,
+    .contact-content {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+    }
+    
+    @media (min-width: 769px) {
+        .about-content {
+            grid-template-columns: 1.2fr 1fr !important;
+        }
+        .contact-content {
+            grid-template-columns: 1fr 1.5fr !important;
+        }
+    }
+}
+
+/* ═══ FIX 16: Opera Mobile - Touch Fix ═══ */
+@media (max-width: 768px) {
+    .swiper-slide {
+        touch-action: pan-y !important;
+    }
+    
+    .section-wrapper {
+        padding: 0 16px !important;
+    }
+    
+    /* Opera Mobile - Força 1 coluna */
+    .about-content,
+    .contact-content,
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ═══ FIX 17: Firefox - Smooth Scrolling ═══ */
+@-moz-document url-prefix() {
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    .swiper-slide {
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary) transparent;
+    }
+}
+
+/* ═══ FIX 18: Safari - Backdrop Filter ═══ */
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .sidebar {
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+    }
+}
+
+/* ═══ FIX 19: Edge Legacy - Grid Fix ═══ */
+@supports (-ms-ime-align:auto) {
+    .about-content,
+    .contact-content {
+        display: -ms-grid;
+        -ms-grid-columns: 1fr 1fr;
+    }
+}
+
+/* ═══ FIX 20: Opera - Animações Otimizadas ═══ */
+@media (prefers-reduced-motion: no-preference) {
+    * {
+        -webkit-animation-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        -webkit-animation-iteration-count: 1 !important;
+        animation-iteration-count: 1 !important;
+        -webkit-transition-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ═══ FIX 21: FALLBACK UNIVERSAL - ÚLTIMA LINHA DE DEFESA ═══ */
+.hero-content > *,
+.about-content > *,
+.contact-content > *,
+.projects-grid > *,
+.section-wrapper > * {
+    max-width: 100% !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FIX: ANIMAÇÕES DE SCROLL (FALLBACK)
+   Data/Hora UTC: 2025-11-16 07:47:23
+   Login: theusXS8292
+   ═══════════════════════════════════════════════════════════════════════
+*/
+
+/* Garante que os cards apareçam após 2s (fallback) */
+.project-card,
+.skill-card,
+.exp-card,
+.contact-item {
+    animation: fadeInFallback 0.6s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInFallback {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay progressivo para cada card */
+.project-card:nth-child(1) { animation-delay: 0.1s; }
+.project-card:nth-child(2) { animation-delay: 0.25s; }
+.project-card:nth-child(3) { animation-delay: 0.4s; }
+
+.skill-card:nth-child(1) { animation-delay: 0.1s; }
+.skill-card:nth-child(2) { animation-delay: 0.25s; }
+.skill-card:nth-child(3) { animation-delay: 0.4s; }
+.skill-card:nth-child(4) { animation-delay: 0.55s; }
+
+.exp-card:nth-child(1) { animation-delay: 0.2s; }
+.exp-card:nth-child(2) { animation-delay: 0.4s; }
+
+
 /*
 ╔═══════════════════════════════════════════════════════════════════════════╗
 ║                           FIM DO ARQUIVO style.css                        ║
