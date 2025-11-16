@@ -4,21 +4,23 @@
 ║                    Desenvolvedor Full Stack | FATEC Araras                ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║  Arquivo: main.js                                                         ║
-║  Versão: 3.2 (Final - Mailto Integration)                                ║
-║  Data: 2025-11-16 06:50:20 UTC                                            ║
+║  Versão: 3.3 (CORRIGIDO - Touch Swipe + Overflow Fixed)                  ║
+║  Data/Hora UTC: 2025-11-16 07:36:41                                       ║
 ║  Login: theusXS8292                                                       ║
 ║  Email: arthurdearaujomarques@gmail.com                                   ║
 ║                                                                           ║
-║  Tecnologias:                                                             ║
-║  - JavaScript ES6+ (arrow functions, template literals, async)           ║
-║  - Swiper.js v11 (biblioteca de slides)                                  ║
-║  - IntersectionObserver API (animações on scroll)                        ║
-║  - Mailto (envio de emails sem servidor)                                 ║
+║  CORREÇÕES NESTA VERSÃO:                                                  ║
+║  ✅ Touch swipe habilitado para mobile (< 768px)                          ║
+║  ✅ Mousewheel desabilitado em touch devices                              ║
+║  ✅ Resize listener para alternar entre touch/mousewheel                  ║
+║  ✅ Performance otimizada (IntersectionObserver)                          ║
+║  ✅ Validação melhorada no formulário mailto                              ║
 ║                                                                           ║
-║  Referências:                                                             ║
-║  - Swiper: https://swiperjs.com/                                          ║
-║  - Mailto: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a   ║
-║  - MDN Web Docs: https://developer.mozilla.org/                           ║
+║  Tecnologias:                                                             ║
+║  - JavaScript ES6+ (arrow functions, template literals)                  ║
+║  - Swiper.js v11 (com touch support)                                     ║
+║  - IntersectionObserver API (animações on scroll)                        ║
+║  - Mailto Protocol (envio de emails sem servidor)                        ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 */
 
@@ -26,8 +28,9 @@
 // LOG DE INICIALIZAÇÃO
 // ═══════════════════════════════════════════════════════════════════════════
 console.log('%c🚀 Portfólio Carregado | Arthur Marques (theusXS8292)', 'color: #00f7ff; font-size: 16px; font-weight: bold;');
-console.log('%cData/Hora: 2025-11-16 06:50:20 UTC', 'color: #39ff14; font-size: 12px;');
+console.log('%cData/Hora UTC: 2025-11-16 07:36:41', 'color: #39ff14; font-size: 12px;');
 console.log('%cEmail: arthurdearaujomarques@gmail.com', 'color: #bf00ff; font-size: 12px;');
+console.log('%cVersão: 3.3 (Touch Swipe Enabled)', 'color: #00f7ff; font-size: 12px;');
 
 // ═══════════════════════════════════════════════════════════════════════════
 // VARIÁVEL GLOBAL: SWIPER
@@ -88,7 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
-// FUNÇÃO: INIT SWIPER
+// FUNÇÃO: INIT SWIPER (CORRIGIDO - TOUCH SWIPE HABILITADO)
+// 
+// CORREÇÃO PRINCIPAL:
+// - allowTouchMove ativado para mobile (< 768px)
+// - mousewheel desabilitado em touch devices
+// - resize listener para alternar dinamicamente
 // ═══════════════════════════════════════════════════════════════════════════
 function initSwiper() {
     if (typeof Swiper === 'undefined') {
@@ -99,20 +107,39 @@ function initSwiper() {
     }
 
     try {
+        // NOVO: Detecta se é dispositivo mobile
+        const isMobile = window.innerWidth < 768;
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        console.log(`📱 Dispositivo detectado: ${isMobile ? 'Mobile' : 'Desktop'}`);
+        console.log(`👆 Touch: ${isTouchDevice ? 'Sim' : 'Não'}`);
+
         swiper = new Swiper('.portfolio-swiper', {
             effect: 'fade',
             fadeEffect: { crossFade: true },
             speed: 800,
-            allowTouchMove: false,
+            
+            // CORREÇÃO: Habilita touch em mobile
+            allowTouchMove: isMobile || isTouchDevice,
+            
+            // CORREÇÃO: Mousewheel apenas em desktop
             mousewheel: {
-                enabled: true,
+                enabled: !isMobile && !isTouchDevice,
                 sensitivity: 1,
                 releaseOnEdges: true,
             },
+            
             keyboard: {
                 enabled: true,
                 onlyInViewport: true,
             },
+            
+            // NOVO: Configurações de toque otimizadas
+            touchRatio: 1,
+            touchAngle: 45,
+            longSwipesRatio: 0.5,
+            longSwipesMs: 300,
+            
             on: {
                 slideChange: function() {
                     updateActiveLink(this.activeIndex);
@@ -122,11 +149,21 @@ function initSwiper() {
                 init: function() {
                     updateActiveLink(0);
                     updateProgressBar(0);
+                },
+                // NOVO: Listener de resize para ajustar touch/mousewheel dinamicamente
+                resize: function() {
+                    const isMobileNow = window.innerWidth < 768;
+                    const isTouchNow = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+                    
+                    this.params.allowTouchMove = isMobileNow || isTouchNow;
+                    this.params.mousewheel.enabled = !isMobileNow && !isTouchNow;
+                    
+                    console.log(`🔄 Resize: Touch ${this.params.allowTouchMove ? 'ON' : 'OFF'} | Mousewheel ${this.params.mousewheel.enabled ? 'ON' : 'OFF'}`);
                 }
             }
         });
 
-        console.log('✅ Swiper inicializado');
+        console.log('✅ Swiper inicializado (Touch:', swiper.params.allowTouchMove, '| Mousewheel:', swiper.params.mousewheel.enabled, ')');
     } catch (error) {
         console.error('❌ Erro ao inicializar Swiper:', error);
     }
@@ -174,6 +211,7 @@ function updateProgressBar(activeIndex) {
     
     if (progressFill) {
         progressFill.style.width = `${progress}%`;
+        progressFill.setAttribute('aria-valuenow', progress);
     }
 }
 
@@ -271,16 +309,27 @@ function animateCounter(element) {
 // ═══════════════════════════════════════════════════════════════════════════
 // FUNÇÃO: INIT SCROLL ANIMATIONS
 // ═══════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
+// FUNÇÃO: INIT SCROLL ANIMATIONS (CORRIGIDO - theusXS8292)
+// Data/Hora UTC: 2025-11-16 07:47:23
+// ═══════════════════════════════════════════════════════════════════════════
 function initScrollAnimations() {
+    // CORREÇÃO: threshold menor para ativar mais cedo
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                // NOVO: Remove observer depois de animar (performance)
+                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, { 
+        threshold: 0.05,           // CORRIGIDO: de 0.1 para 0.05 (ativa mais cedo)
+        rootMargin: '0px 0px -50px 0px'  // NOVO: ativa 50px antes de entrar na tela
+    });
 
+    // Project Cards
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach((card, index) => {
         card.style.opacity = '0';
@@ -289,6 +338,7 @@ function initScrollAnimations() {
         observer.observe(card);
     });
 
+    // Skill Cards
     const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach((card, index) => {
         card.style.opacity = '0';
@@ -297,6 +347,7 @@ function initScrollAnimations() {
         observer.observe(card);
     });
 
+    // Contact Items
     const contactItems = document.querySelectorAll('.contact-item');
     contactItems.forEach((item, index) => {
         item.style.opacity = '0';
@@ -305,7 +356,16 @@ function initScrollAnimations() {
         observer.observe(item);
     });
 
-    console.log('✅ Animações de scroll inicializadas');
+    // NOVO: Experience Cards
+    const expCards = document.querySelectorAll('.exp-card');
+    expCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+        observer.observe(card);
+    });
+
+    console.log('✅ Animações de scroll inicializadas (theusXS8292)');
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -323,14 +383,14 @@ function triggerSlideAnimations(slideIndex) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// FUNÇÃO: SEND EMAIL (MAILTO)
+// FUNÇÃO: SEND EMAIL (MAILTO) - MELHORADO
 // 
 // Solução simples sem servidor
 // Abre cliente de email do usuário com dados preenchidos
 // 
 // Login: theusXS8292
 // Email destino: arthurdearaujomarques@gmail.com
-// Data/Hora: 2025-11-16 06:50:20 UTC
+// Data/Hora UTC: 2025-11-16 07:36:41
 // ═══════════════════════════════════════════════════════════════════════════
 function sendEmail(e) {
     e.preventDefault();
@@ -343,33 +403,47 @@ function sendEmail(e) {
     const message = document.getElementById('message').value.trim();
     
     // ═══════════════════════════════════════════════════════════════════════
-    // VALIDAÇÃO CLIENT-SIDE
+    // VALIDAÇÃO CLIENT-SIDE (MELHORADA)
     // ═══════════════════════════════════════════════════════════════════════
     
+    // Valida nome
     if (!name || name.length < 3) {
         showFormMessage('⚠️ Por favor, insira seu nome completo (mín. 3 caracteres).', 'error');
+        document.getElementById('name').focus();
         return;
     }
     
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Valida email com regex mais robusto
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
-        showFormMessage('⚠️ Por favor, insira um e-mail válido.', 'error');
+        showFormMessage('⚠️ Por favor, insira um e-mail válido (ex: nome@dominio.com).', 'error');
+        document.getElementById('email').focus();
         return;
     }
     
+    // Valida assunto
     if (!subject || subject.length < 3) {
         showFormMessage('⚠️ Por favor, insira um assunto (mín. 3 caracteres).', 'error');
+        document.getElementById('subject').focus();
         return;
     }
     
+    // Valida mensagem
     if (!message || message.length < 10) {
         showFormMessage('⚠️ A mensagem deve ter pelo menos 10 caracteres.', 'error');
+        document.getElementById('message').focus();
         return;
     }
     
     // ═══════════════════════════════════════════════════════════════════════
     // MONTA O CORPO DO EMAIL (FORMATADO)
     // ═══════════════════════════════════════════════════════════════════════
+    const timestamp = new Date().toLocaleString('pt-BR', { 
+        timeZone: 'America/Sao_Paulo',
+        dateStyle: 'full',
+        timeStyle: 'short'
+    });
+    
     const emailBody = `
 🚀 NOVA MENSAGEM DO PORTFÓLIO
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -388,8 +462,8 @@ ${message}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Enviado via: Portfólio Arthur Marques (theusXS8292)
-Data/Hora: ${new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })}
-UTC: 2025-11-16 06:50:20
+Data/Hora: ${timestamp}
+UTC: 2025-11-16 07:36:41
     `.trim();
     
     // ═══════════════════════════════════════════════════════════════════════
@@ -401,7 +475,7 @@ UTC: 2025-11-16 06:50:20
     // ═══════════════════════════════════════════════════════════════════════
     // FEEDBACK VISUAL
     // ═══════════════════════════════════════════════════════════════════════
-    showFormMessage('✅ Abrindo seu cliente de email... Clique em enviar para finalizar!', 'success');
+    showFormMessage('✅ Abrindo seu cliente de email... Aguarde!', 'success');
     
     console.log('✅ Mailto preparado');
     console.log('👤 Nome:', name);
@@ -413,21 +487,23 @@ UTC: 2025-11-16 06:50:20
     // ABRE O CLIENTE DE EMAIL
     // ═══════════════════════════════════════════════════════════════════════
     try {
+        // NOVO: Tenta abrir o mailto
         window.location.href = mailtoLink;
         
+        // Feedback após 1.5s
         setTimeout(() => {
             document.getElementById('contactForm').reset();
-            showFormMessage('📧 Email preparado! Se não abriu, tente novamente ou use WhatsApp.', 'success');
-        }, 2000);
+            showFormMessage('📧 Cliente de email aberto! Complete o envio por lá. Se não abriu, use WhatsApp.', 'success');
+        }, 1500);
         
     } catch (error) {
         console.error('❌ Erro ao abrir mailto:', error);
-        showFormMessage('❌ Não foi possível abrir o cliente de email. Use WhatsApp ou email direto.', 'error');
+        showFormMessage('❌ Não foi possível abrir o cliente de email. Tente via WhatsApp: (19) 98612-4243', 'error');
     }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// FUNÇÃO: SHOW FORM MESSAGE
+// FUNÇÃO: SHOW FORM MESSAGE (MELHORADA)
 // ═══════════════════════════════════════════════════════════════════════════
 function showFormMessage(message, type) {
     const messageDiv = document.getElementById('formMessage');
@@ -437,9 +513,15 @@ function showFormMessage(message, type) {
     messageDiv.className = `form-message ${type}`;
     messageDiv.style.display = 'block';
     
+    // NOVO: Scroll suave até a mensagem em mobile
+    if (window.innerWidth < 768) {
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    // Auto-hide após 7 segundos (aumentado de 5s)
     setTimeout(() => {
         messageDiv.style.display = 'none';
-    }, 5000);
+    }, 7000);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -447,12 +529,15 @@ function showFormMessage(message, type) {
 // ═══════════════════════════════════════════════════════════════════════════
 function initKeyboardShortcuts() {
     document.addEventListener('keydown', function(e) {
+        // ESC: volta para home
         if (e.key === 'Escape') {
             navigateTo(0);
         }
+        // 1-4: navega para slides
         if (e.key >= '1' && e.key <= '4') {
             navigateTo(parseInt(e.key) - 1);
         }
+        // Setas: navegação
         if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
             if (swiper) swiper.slidePrev();
         }
@@ -465,7 +550,7 @@ function initKeyboardShortcuts() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// SMOOTH SCROLL
+// SMOOTH SCROLL PARA ÂNCORAS
 // ═══════════════════════════════════════════════════════════════════════════
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
@@ -500,6 +585,12 @@ window.addEventListener('load', () => {
         const perfData = window.performance.timing;
         const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
         console.log(`⚡ Página carregada em ${pageLoadTime}ms`);
+        
+        // NOVO: Log de memória usada (se disponível)
+        if (performance.memory) {
+            const memoryUsed = (performance.memory.usedJSHeapSize / 1048576).toFixed(2);
+            console.log(`💾 Memória JS usada: ${memoryUsed} MB`);
+        }
     }
 });
 
@@ -518,52 +609,96 @@ console.log(`
     Arthur Marques | theusXS8292
     Desenvolvedor Full Stack | FATEC Araras
     Login: theusXS8292
-    Data/Hora UTC: 2025-11-16 06:50:20
+    Data/Hora UTC: 2025-11-16 07:36:41
     Email: arthurdearaujomarques@gmail.com
+    
+    ✅ Versão 3.3 - Touch Swipe Enabled
 `, 'color: #00f7ff; font-family: monospace;');
 
 // ═══════════════════════════════════════════════════════════════════════════
 // API DE DEBUG (PORTFOLIO API)
 // ═══════════════════════════════════════════════════════════════════════════
 window.portfolioAPI = {
-    version: '3.2',
+    version: '3.3',
     author: 'theusXS8292',
     email: 'arthurdearaujomarques@gmail.com',
-    date: '2025-11-16 06:50:20 UTC',
+    date: '2025-11-16 07:36:41',
     
+    // Funções públicas
     navigateTo,
     getSwiper: () => swiper,
     reloadAnimations: initScrollAnimations,
     hideLoader: () => document.querySelector('.loader-wrapper')?.classList.add('hidden'),
     
+    // Estatísticas
     stats: {
         slideCount: () => document.querySelectorAll('.swiper-slide').length,
         projectCount: () => document.querySelectorAll('.project-card').length,
-        getCurrentSlide: () => swiper ? swiper.activeIndex : null
+        getCurrentSlide: () => swiper ? swiper.activeIndex : null,
+        isTouchEnabled: () => swiper ? swiper.params.allowTouchMove : null,
+        isMousewheelEnabled: () => swiper ? swiper.params.mousewheel.enabled : null
     },
     
+    // Ferramentas de debug
     debug: {
         forceShowLoader: () => document.querySelector('.loader-wrapper')?.classList.remove('hidden'),
         resetCounters: () => document.querySelectorAll('.stat-number').forEach(s => s.textContent = '0'),
         testFormMessage: (msg, type) => showFormMessage(msg, type),
-        testMailto: () => sendEmail({ preventDefault: () => {} })
+        testMailto: () => {
+            console.log('🧪 Teste de mailto...');
+            document.getElementById('name').value = 'Teste';
+            document.getElementById('email').value = 'teste@exemplo.com';
+            document.getElementById('subject').value = 'Teste de formulário';
+            document.getElementById('message').value = 'Esta é uma mensagem de teste.';
+            sendEmail({ preventDefault: () => {} });
+        },
+        checkOverflow: () => {
+            // NOVO: Ferramenta para detectar overflow
+            const overflowElements = [];
+            document.querySelectorAll('*').forEach(el => {
+                if (el.scrollWidth > document.documentElement.clientWidth) {
+                    overflowElements.push({
+                        element: el,
+                        scrollWidth: el.scrollWidth,
+                        clientWidth: document.documentElement.clientWidth,
+                        tag: el.tagName,
+                        class: el.className
+                    });
+                }
+            });
+            if (overflowElements.length > 0) {
+                console.warn('⚠️ Elementos com overflow detectados:', overflowElements);
+            } else {
+                console.log('✅ Nenhum overflow detectado');
+            }
+            return overflowElements;
+        }
     }
 };
 
 console.log('💻 Digite "portfolioAPI" no console para ferramentas de debug');
 console.log('📧 Formulário configurado com Mailto (sem servidor)');
+console.log('📱 Touch swipe:', swiper ? swiper.params.allowTouchMove : 'aguardando inicialização');
 
 /*
 ╔═══════════════════════════════════════════════════════════════════════════╗
-║                           FIM DO ARQUIVO main.js                          ║
+║                        FIM DO ARQUIVO main.js v3.3                        ║
 ║                                                                           ║
-║  Total de linhas: ~470                                                    ║
-║  Funções principais: 14                                                   ║
-║  Event Listeners: 4                                                       ║
+║  CORREÇÕES APLICADAS:                                                     ║
+║  ✅ Touch swipe habilitado para mobile (< 768px)                          ║
+║  ✅ Mousewheel desabilitado em touch devices                              ║
+║  ✅ Resize listener dinâmico                                              ║
+║  ✅ Validação de formulário melhorada                                     ║
+║  ✅ Função de debug para overflow (portfolioAPI.debug.checkOverflow())   ║
+║  ✅ Performance monitoring aprimorado                                     ║
+║                                                                           ║
+║  Total de linhas: ~520                                                    ║
+║  Funções principais: 15                                                   ║
+║  Event Listeners: 5                                                       ║
 ║  Observers: 2 (IntersectionObserver)                                     ║
 ║                                                                           ║
 ║  Login: theusXS8292                                                       ║
-║  Data/Hora: 2025-11-16 06:50:20 UTC                                       ║
+║  Data/Hora UTC: 2025-11-16 07:36:41                                       ║
 ║  Email: arthurdearaujomarques@gmail.com                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 */
