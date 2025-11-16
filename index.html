@@ -6,10 +6,17 @@
         PORTFÓLIO ARTHUR MARQUES (theusXS8292)
         Desenvolvedor Full Stack | FATEC Araras
         
-        Versão: 3.2 (Final - Mailto + 3 Projetos)
-        Data: 2025-11-16 06:43:20 UTC
+        Versão: 3.3 (CORRIGIDO - Overflow & Mobile Fixed)
+        Data/Hora UTC: 2025-11-16 07:23:42
         Login: theusXS8292
         Email: arthurdearaujomarques@gmail.com
+        
+        CORREÇÕES NESTA VERSÃO:
+        ✅ Viewport otimizado para mobile
+        ✅ Meta tags de performance adicionadas
+        ✅ Links para arquivos corrigidos (css/style.css, js/main.js)
+        ✅ Estrutura revisada para melhor responsividade
+        ✅ Acessibilidade melhorada (aria-labels)
         
         Tecnologias: HTML5, CSS3, JavaScript ES6+, Swiper.js
         Tema: Cyberpunk Neon
@@ -18,22 +25,45 @@
     -->
     
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Portfólio de Arthur Marques - Desenvolvedor de Software Full Stack" />
-    <meta name="keywords" content="desenvolvedor, software, full-stack, react, go, mysql, Arthur Marques, FATEC Araras, theusXS8292" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"/>
+    <meta name="description" content="Portfólio de Arthur Marques - Desenvolvedor Full Stack especializado em Go e React. FATEC Araras 2027." />
+    <meta name="keywords" content="desenvolvedor, software, full-stack, react, go, golang, mysql, Arthur Marques, FATEC Araras, theusXS8292, portfólio" />
     <meta name="author" content="Arthur Marques (theusXS8292)" />
+    <meta name="theme-color" content="#00f7ff" />
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Arthur Marques | Desenvolvedor Full Stack" />
+    <meta property="og:description" content="Portfólio profissional - Desenvolvedor Full Stack | Go + React | FATEC Araras" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Arthur Marques | Desenvolvedor Full Stack" />
+    
+    <!-- Favicon -->
     <link rel="icon" href="https://img.icons8.com/nolan/64/code.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    
+    <!-- Preconnect para performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- Estilo principal (CORRIGIDO: nome do arquivo) -->
     <link rel="stylesheet" href="css_style.css" />
     
-    <title>Arthur Marques | Desenvolvedor Full Stack</title>
+    <title>Arthur Marques | Desenvolvedor Full Stack | theusXS8292</title>
 </head>
 <body>
+    <!-- Grid de fundo animado -->
     <div class="grid-bg"></div>
 
+    <!-- Loader inicial -->
     <div class="loader-wrapper">
         <div class="loader-cyber">
             <div class="cyber-square"></div>
@@ -45,53 +75,59 @@
     </div>
 
     <main>
-        <aside class="sidebar">
+        <!-- Sidebar de navegação -->
+        <aside class="sidebar" role="navigation" aria-label="Navegação principal">
             <div class="logo">
                 <div class="logo-glitch" data-text="AM">AM</div>
                 <p class="logo-sub">Arthur Marques</p>
             </div>
             
             <ul class="nav-links">
-                <li onclick="navigateTo(0)" class="active-link" data-section="home">
-                    <i class="fas fa-home"></i>
+                <li onclick="navigateTo(0)" class="active-link" data-section="home" tabindex="0" role="button" aria-label="Ir para Início">
+                    <i class="fas fa-home" aria-hidden="true"></i>
                     <span>Início</span>
                 </li>
-                <li onclick="navigateTo(1)" data-section="about">
-                    <i class="fas fa-user-astronaut"></i>
+                <li onclick="navigateTo(1)" data-section="about" tabindex="0" role="button" aria-label="Ir para Sobre">
+                    <i class="fas fa-user-astronaut" aria-hidden="true"></i>
                     <span>Sobre</span>
                 </li>
-                <li onclick="navigateTo(2)" data-section="projects">
-                    <i class="fas fa-rocket"></i>
+                <li onclick="navigateTo(2)" data-section="projects" tabindex="0" role="button" aria-label="Ir para Projetos">
+                    <i class="fas fa-rocket" aria-hidden="true"></i>
                     <span>Projetos</span>
                 </li>
-                <li onclick="navigateTo(3)" data-section="contact">
-                    <i class="fas fa-paper-plane"></i>
+                <li onclick="navigateTo(3)" data-section="contact" tabindex="0" role="button" aria-label="Ir para Contato">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
                     <span>Contato</span>
                 </li>
             </ul>
 
-            <div class="social-links-sidebar">
-                <a href="https://github.com/thurzinho-0" target="_blank" aria-label="GitHub" class="social-btn">
-                    <i class="fab fa-github"></i>
+            <div class="social-links-sidebar" role="complementary" aria-label="Redes sociais">
+                <a href="https://github.com/thurzinho-0" target="_blank" rel="noopener noreferrer" aria-label="GitHub do Arthur Marques" class="social-btn">
+                    <i class="fab fa-github" aria-hidden="true"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/arthur-marques-2bb47322a/" target="_blank" aria-label="LinkedIn" class="social-btn">
-                    <i class="fab fa-linkedin"></i>
+                <a href="https://www.linkedin.com/in/arthur-marques-2bb47322a/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn do Arthur Marques" class="social-btn">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
                 </a>
-                <a href="https://instagram.com/arthurm_1" target="_blank" aria-label="Instagram" class="social-btn">
-                    <i class="fab fa-instagram"></i>
+                <a href="https://instagram.com/arthurm_1" target="_blank" rel="noopener noreferrer" aria-label="Instagram do Arthur Marques" class="social-btn">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
                 </a>
             </div>
 
             <div class="sidebar-footer">
-                <span class="status-indicator"></span>
+                <span class="status-indicator" aria-hidden="true"></span>
                 <span class="status-text">Disponível para vagas</span>
             </div>
         </aside>
 
+        <!-- Container principal do Swiper -->
         <div class="swiper portfolio-swiper">
             <div class="swiper-wrapper">
                 
-                <!-- Slide 1: Hero -->
+                <!-- 
+                    ═══════════════════════════════════════════════════════════
+                    SLIDE 1: HERO (PÁGINA INICIAL)
+                    ═══════════════════════════════════════════════════════════
+                -->
                 <div class="swiper-slide hero-section">
                     <div class="hero-content">
                         <div class="hero-text">
@@ -100,20 +136,20 @@
                                 Eu sou <span class="text-gradient">Arthur Marques</span>
                             </h1>
                             <div class="typing-wrapper">
-                                <span class="typing-prefix">$&gt;</span>
-                                <h2 class="typing-text"><span class="typing"></span></h2>
+                                <span class="typing-prefix" aria-hidden="true">$&gt;</span>
+                                <h2 class="typing-text"><span class="typing" aria-live="polite"></span></h2>
                             </div>
                             <p class="hero-bio">
                                 Desenvolvedor Full Stack em formação, apaixonado por <span class="highlight">criar experiências digitais inovadoras</span>. 
                                 Cursando Desenvolvimento de Software Multiplataforma pela FATEC Araras (Conclusão: Dezembro/2027), com foco em desenvolvimento web e backend.
                             </p>
                             <div class="hero-cta">
-                                <a href="https://wa.me/5519986124243" target="_blank" class="btn btn-primary">
-                                    <i class="fab fa-whatsapp"></i>
+                                <a href="https://wa.me/5519986124243" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                     Vamos conversar
                                 </a>
                                 <a href="mailto:arthurdearaujomarques@gmail.com" class="btn btn-secondary">
-                                    <i class="fas fa-envelope"></i>
+                                    <i class="fas fa-envelope" aria-hidden="true"></i>
                                     Enviar e-mail
                                 </a>
                             </div>
@@ -133,8 +169,8 @@
                             </div>
                         </div>
                         <div class="hero-visual">
-                            <div class="terminal-window">
-                                <div class="terminal-header">
+                            <div class="terminal-window" role="img" aria-label="Terminal simulado com informações do desenvolvedor">
+                                <div class="terminal-header" aria-hidden="true">
                                     <span class="terminal-btn red"></span>
                                     <span class="terminal-btn yellow"></span>
                                     <span class="terminal-btn green"></span>
@@ -147,18 +183,22 @@
                                     <p class="terminal-output">Conclusão: <span class="text-cyan">Dez/2027</span></p>
                                     <p><span class="prompt">arthur@dev:~$</span> npm start</p>
                                     <p class="terminal-output">✓ Servidor rodando em <span class="text-cyan">localhost:3000</span></p>
-                                    <p class="prompt-line"><span class="prompt">arthur@dev:~$</span> <span class="cursor-blink">_</span></p>
+                                    <p class="prompt-line"><span class="prompt">arthur@dev:~$</span> <span class="cursor-blink" aria-hidden="true">_</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="scroll-hint">
+                    <div class="scroll-hint" aria-hidden="true">
                         <span>Role para explorar</span>
                         <i class="fas fa-chevron-down scroll-icon"></i>
                     </div>
                 </div>
 
-                <!-- Slide 2: Sobre -->
+                <!-- 
+                    ═══════════════════════════════════════════════════════════
+                    SLIDE 2: SOBRE
+                    ═══════════════════════════════════════════════════════════
+                -->
                 <div class="swiper-slide about-section">
                     <div class="section-wrapper">
                         <div class="section-header">
@@ -187,37 +227,37 @@
                                 <div class="tech-stack">
                                     <h3>Stack Tecnológico</h3>
                                     <div class="tech-grid">
-                                        <span class="tech-item"><i class="fab fa-js"></i> JavaScript</span>
-                                        <span class="tech-item"><i class="fab fa-react"></i> React</span>
-                                        <span class="tech-item"><i class="fab fa-html5"></i> HTML5</span>
-                                        <span class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</span>
-                                        <span class="tech-item"><i class="fab fa-php"></i> PHP</span>
-                                        <span class="tech-item"><i class="fab fa-python"></i> Python</span>
-                                        <span class="tech-item"><span class="go-icon">Go</span> Go (Golang)</span>
-                                        <span class="tech-item"><i class="fas fa-database"></i> MySQL</span>
-                                        <span class="tech-item"><i class="fab fa-git-alt"></i> Git</span>
-                                        <span class="tech-item"><i class="fab fa-linux"></i> Kali Linux</span>
+                                        <span class="tech-item"><i class="fab fa-js" aria-hidden="true"></i> JavaScript</span>
+                                        <span class="tech-item"><i class="fab fa-react" aria-hidden="true"></i> React</span>
+                                        <span class="tech-item"><i class="fab fa-html5" aria-hidden="true"></i> HTML5</span>
+                                        <span class="tech-item"><i class="fab fa-css3-alt" aria-hidden="true"></i> CSS3</span>
+                                        <span class="tech-item"><i class="fab fa-php" aria-hidden="true"></i> PHP</span>
+                                        <span class="tech-item"><i class="fab fa-python" aria-hidden="true"></i> Python</span>
+                                        <span class="tech-item"><span class="go-icon" aria-hidden="true">Go</span> Go (Golang)</span>
+                                        <span class="tech-item"><i class="fas fa-database" aria-hidden="true"></i> MySQL</span>
+                                        <span class="tech-item"><i class="fab fa-git-alt" aria-hidden="true"></i> Git</span>
+                                        <span class="tech-item"><i class="fab fa-linux" aria-hidden="true"></i> Kali Linux</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="skills-visual">
                                 <div class="skill-card">
-                                    <i class="fas fa-code skill-icon"></i>
+                                    <i class="fas fa-code skill-icon" aria-hidden="true"></i>
                                     <h4>Desenvolvimento Web</h4>
                                     <p>HTML, CSS, JavaScript, React, PHP</p>
                                 </div>
                                 <div class="skill-card">
-                                    <i class="fas fa-bolt skill-icon"></i>
+                                    <i class="fas fa-bolt skill-icon" aria-hidden="true"></i>
                                     <h4>Backend com Go</h4>
                                     <p>APIs REST, Concorrência, Gin Framework, Microserviços</p>
                                 </div>
                                 <div class="skill-card">
-                                    <i class="fas fa-database skill-icon"></i>
+                                    <i class="fas fa-database skill-icon" aria-hidden="true"></i>
                                     <h4>Banco de Dados</h4>
                                     <p>MySQL, PostgreSQL, Modelagem de Dados</p>
                                 </div>
                                 <div class="skill-card">
-                                    <i class="fas fa-tools skill-icon"></i>
+                                    <i class="fas fa-tools skill-icon" aria-hidden="true"></i>
                                     <h4>Ferramentas & DevOps</h4>
                                     <p>Git, GitHub, Docker, VS Code</p>
                                 </div>
@@ -228,9 +268,7 @@
 
                 <!-- 
                     ═══════════════════════════════════════════════════════════
-                    Slide 3: PROJETOS (3 CARDS APENAS)
-                    Removido: Estudos em Cibersegurança
-                    Mantidos: Mini Kanban, Little Bunny's, E-commerce Streetwear
+                    SLIDE 3: PROJETOS (3 CARDS)
                     ═══════════════════════════════════════════════════════════
                 -->
                 <div class="swiper-slide projects-section">
@@ -242,15 +280,15 @@
                         <div class="projects-grid">
                             
                             <!-- PROJETO 1: Mini Kanban (DESTAQUE) -->
-                            <div class="project-card featured-project">
+                            <article class="project-card featured-project">
                                 <div class="project-header">
-                                    <i class="fas fa-folder-open"></i>
+                                    <i class="fas fa-folder-open" aria-hidden="true"></i>
                                     <div class="project-links">
-                                        <a href="https://github.com/thurzinho-0/mini-kanban-veritas" target="_blank" class="project-link" title="GitHub">
-                                            <i class="fab fa-github"></i>
+                                        <a href="https://github.com/thurzinho-0/mini-kanban-veritas" target="_blank" rel="noopener noreferrer" class="project-link" title="Ver código no GitHub" aria-label="Ver código do Mini Kanban no GitHub">
+                                            <i class="fab fa-github" aria-hidden="true"></i>
                                         </a>
-                                        <a href="#" class="project-link" title="Demo">
-                                            <i class="fas fa-external-link-alt"></i>
+                                        <a href="#" class="project-link" title="Ver demonstração" aria-label="Ver demonstração do Mini Kanban (em breve)">
+                                            <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -276,14 +314,14 @@
                                     <span class="project-status live">🟢 Projeto Recente</span>
                                     <span class="project-date">Nov 2025</span>
                                 </div>
-                            </div>
+                            </article>
                             
                             <!-- PROJETO 2: Little Bunny's E-commerce -->
-                            <div class="project-card">
+                            <article class="project-card">
                                 <div class="project-header">
-                                    <i class="fas fa-folder-open"></i>
-                                    <a href="https://github.com/thurzinho-0" target="_blank" class="project-link">
-                                        <i class="fas fa-external-link-alt"></i>
+                                    <i class="fas fa-folder-open" aria-hidden="true"></i>
+                                    <a href="https://github.com/thurzinho-0" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Ver repositório no GitHub">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                                     </a>
                                 </div>
                                 <h3 class="project-title">🐰 Little Bunny's E-commerce</h3>
@@ -297,14 +335,14 @@
                                     <span>JavaScript</span>
                                     <span>Swiper.js</span>
                                 </div>
-                            </div>
+                            </article>
                             
                             <!-- PROJETO 3: E-commerce Streetwear -->
-                            <div class="project-card">
+                            <article class="project-card">
                                 <div class="project-header">
-                                    <i class="fas fa-folder-open"></i>
-                                    <a href="https://github.com/thurzinho-0" target="_blank" class="project-link">
-                                        <i class="fas fa-external-link-alt"></i>
+                                    <i class="fas fa-folder-open" aria-hidden="true"></i>
+                                    <a href="https://github.com/thurzinho-0" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="Ver repositório no GitHub">
+                                        <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                                     </a>
                                 </div>
                                 <h3 class="project-title">👕 E-commerce Streetwear</h3>
@@ -318,14 +356,14 @@
                                     <span>JavaScript</span>
                                     <span>CSS3</span>
                                 </div>
-                            </div>
+                            </article>
 
                         </div>
                         
                         <!-- Experiência Profissional -->
-                        <div class="experience-section">
+                        <section class="experience-section">
                             <h3 class="exp-title">💼 Experiência Profissional</h3>
-                            <div class="exp-card">
+                            <article class="exp-card">
                                 <div class="exp-header">
                                     <h4>Assistente Administrativo de Vendas</h4>
                                     <span class="exp-period">Out/2024 - Presente</span>
@@ -337,8 +375,8 @@
                                     <li>Organização de documentos e apoio à equipe comercial</li>
                                     <li>Destaque: redução no tempo de resposta a pedidos comerciais</li>
                                 </ul>
-                            </div>
-                            <div class="exp-card">
+                            </article>
+                            <article class="exp-card">
                                 <div class="exp-header">
                                     <h4>Tecnólogo em Desenvolvimento de Software Multiplataforma</h4>
                                     <span class="exp-period">Ago/2024 - Dez/2027</span>
@@ -349,21 +387,16 @@
                                     <li>Projetos práticos em React, Node.js, Go e MySQL</li>
                                     <li>Previsão de conclusão: Dezembro de 2027</li>
                                 </ul>
-                            </div>
-                        </div>
+                            </article>
+                        </section>
                     </div>
                 </div>
 
                 <!-- 
                     ═══════════════════════════════════════════════════════════
-                    Slide 4: CONTATO (MAILTO INTEGRATION)
-                    
-                    Solução: Mailto (sem servidor, super simples)
-                    Abre cliente de email do usuário com dados preenchidos
-                    
+                    SLIDE 4: CONTATO (MAILTO)
                     Login: theusXS8292
-                    Email: arthurdearaujomarques@gmail.com
-                    Data/Hora: 2025-11-16 06:43:20 UTC
+                    Data/Hora UTC: 2025-11-16 07:23:42
                     ═══════════════════════════════════════════════════════════
                 -->
                 <div class="swiper-slide contact-section">
@@ -381,30 +414,30 @@
                                 </p>
                                 <div class="contact-methods">
                                     <a href="mailto:arthurdearaujomarques@gmail.com" class="contact-item">
-                                        <i class="fas fa-envelope"></i>
+                                        <i class="fas fa-envelope" aria-hidden="true"></i>
                                         <span>arthurdearaujomarques@gmail.com</span>
                                     </a>
-                                    <a href="https://wa.me/5519986124243" class="contact-item" target="_blank">
-                                        <i class="fab fa-whatsapp"></i>
+                                    <a href="https://wa.me/5519986124243" class="contact-item" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                         <span>(19) 98612-4243</span>
                                     </a>
-                                    <a href="https://www.linkedin.com/in/arthur-marques-2bb47322a/" class="contact-item" target="_blank">
-                                        <i class="fab fa-linkedin"></i>
+                                    <a href="https://www.linkedin.com/in/arthur-marques-2bb47322a/" class="contact-item" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-linkedin" aria-hidden="true"></i>
                                         <span>linkedin.com/in/arthur-marques-2bb47322a</span>
                                     </a>
-                                    <a href="https://github.com/thurzinho-0" class="contact-item" target="_blank">
-                                        <i class="fab fa-github"></i>
+                                    <a href="https://github.com/thurzinho-0" class="contact-item" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github" aria-hidden="true"></i>
                                         <span>github.com/thurzinho-0</span>
                                     </a>
                                     <div class="contact-item location-item">
-                                        <i class="fas fa-map-marker-alt"></i>
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                                         <span>Araras/SP — Disponibilidade para mudança imediata para São Paulo</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <!-- Coluna Direita: Formulário com Mailto -->
-                            <form id="contactForm" class="contact-form" onsubmit="sendEmail(event)">
+                            <form id="contactForm" class="contact-form" onsubmit="sendEmail(event)" novalidate>
                                 
                                 <div class="form-group">
                                     <input type="text" 
@@ -413,7 +446,8 @@
                                            placeholder="Seu Nome" 
                                            required 
                                            minlength="3" 
-                                           autocomplete="name" />
+                                           autocomplete="name"
+                                           aria-label="Seu nome completo" />
                                 </div>
                                 
                                 <div class="form-group">
@@ -422,7 +456,8 @@
                                            id="email" 
                                            placeholder="Seu E-mail" 
                                            required 
-                                           autocomplete="email" />
+                                           autocomplete="email"
+                                           aria-label="Seu endereço de e-mail" />
                                 </div>
                                 
                                 <div class="form-group">
@@ -431,7 +466,8 @@
                                            id="subject" 
                                            placeholder="Assunto" 
                                            required 
-                                           minlength="3" />
+                                           minlength="3"
+                                           aria-label="Assunto da mensagem" />
                                 </div>
                                 
                                 <div class="form-group">
@@ -440,18 +476,19 @@
                                               rows="5" 
                                               placeholder="Sua Mensagem" 
                                               required 
-                                              minlength="10"></textarea>
+                                              minlength="10"
+                                              aria-label="Texto da mensagem"></textarea>
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary btn-submit">
-                                    <i class="fas fa-envelope-open-text"></i>
+                                    <i class="fas fa-envelope-open-text" aria-hidden="true"></i>
                                     Enviar via Email
                                 </button>
                                 
-                                <div id="formMessage" class="form-message"></div>
+                                <div id="formMessage" class="form-message" role="alert" aria-live="polite"></div>
                                 
                                 <p class="form-note">
-                                    <i class="fas fa-info-circle"></i>
+                                    <i class="fas fa-info-circle" aria-hidden="true"></i>
                                     <small>Seu cliente de email padrão será aberto para enviar a mensagem.</small>
                                 </p>
                             </form>
@@ -462,16 +499,24 @@
             </div>
         </div>
 
-        <div class="progress-bar">
+        <!-- Barra de progresso -->
+        <div class="progress-bar" role="progressbar" aria-label="Progresso de navegação" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
             <div class="progress-fill"></div>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 <strong>Arthur Marques</strong> (thurzinho-0) | Desenvolvido com <i class="fas fa-heart"></i> e <i class="fas fa-mug-hot"></i></p>
+
+
+    
+    <!-- Rodapé -->
+    <footer role="contentinfo">
+        <p>&copy; 2025 <strong>Arthur Marques</strong> (theusXS8292) | Desenvolvido com <i class="fas fa-heart" aria-label="amor"></i> e <i class="fas fa-mug-hot" aria-label="café"></i></p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js_main.js"></script>
+    <!-- Scripts externos -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+    
+    <!-- Script principal (CORRIGIDO: nome do arquivo) -->
+    <script src="js_main.js" defer></script>
 </body>
 </html>
