@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- 
+        ═══════════════════════════════════════════════════════════
+        PORTFÓLIO ARTHUR MARQUES (theusXS8292)
+        Desenvolvedor Full Stack | FATEC Araras
+        
+        Versão: 3.2 (Final - Mailto + 3 Projetos)
+        Data: 2025-11-16 06:43:20 UTC
+        Login: theusXS8292
+        Email: arthurdearaujomarques@gmail.com
+        
+        Tecnologias: HTML5, CSS3, JavaScript ES6+, Swiper.js
+        Tema: Cyberpunk Neon
+        Formulário: Mailto (sem servidor)
+        ═══════════════════════════════════════════════════════════
+    -->
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Portfólio de Arthur Marques - Desenvolvedor de Software Full Stack" />
+    <meta name="keywords" content="desenvolvedor, software, full-stack, react, go, mysql, Arthur Marques, FATEC Araras, theusXS8292" />
+    <meta name="author" content="Arthur Marques (theusXS8292)" />
+    
+    <link rel="icon" href="https://img.icons8.com/nolan/64/code.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css_style.css" />
+    
+    <title>Arthur Marques | Desenvolvedor Full Stack</title>
+</head>
+<body>
+    <div class="grid-bg"></div>
+
+    <div class="loader-wrapper">
+        <div class="loader-cyber">
+            <div class="cyber-square"></div>
+            <div class="cyber-square"></div>
+            <div class="cyber-square"></div>
+            <div class="cyber-square"></div>
+        </div>
+        <p class="loader-text">CARREGANDO<span class="dots">...</span></p>
+    </div>
+
+    <main>
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-glitch" data-text="AM">AM</div>
+                <p class="logo-sub">Arthur Marques</p>
+            </div>
+            
+            <ul class="nav-links">
+                <li onclick="navigateTo(0)" class="active-link" data-section="home">
+                    <i class="fas fa-home"></i>
+                    <span>Início</span>
+                </li>
+                <li onclick="navigateTo(1)" data-section="about">
+                    <i class="fas fa-user-astronaut"></i>
+                    <span>Sobre</span>
+                </li>
+                <li onclick="navigateTo(2)" data-section="projects">
+                    <i class="fas fa-rocket"></i>
+                    <span>Projetos</span>
+                </li>
+                <li onclick="navigateTo(3)" data-section="contact">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Contato</span>
+                </li>
+            </ul>
+
+            <div class="social-links-sidebar">
+                <a href="https://github.com/thurzinho-0" target="_blank" aria-label="GitHub" class="social-btn">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/arthur-marques-2bb47322a/" target="_blank" aria-label="LinkedIn" class="social-btn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://instagram.com/arthurm_1" target="_blank" aria-label="Instagram" class="social-btn">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+
+            <div class="sidebar-footer">
+                <span class="status-indicator"></span>
+                <span class="status-text">Disponível para vagas</span>
+            </div>
+        </aside>
+
+        <div class="swiper portfolio-swiper">
+            <div class="swiper-wrapper">
+                
+                <!-- Slide 1: Hero -->
+                <div class="swiper-slide hero-section">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <p class="hero-greeting">// Olá, mundo!</p>
+                            <h1 class="hero-title">
+                                Eu sou <span class="text-gradient">Arthur Marques</span>
+                            </h1>
+                            <div class="typing-wrapper">
+                                <span class="typing-prefix">$&gt;</span>
+                                <h2 class="typing-text"><span class="typing"></span></h2>
+                            </div>
+                            <p class="hero-bio">
+                                Desenvolvedor Full Stack em formação, apaixonado por <span class="highlight">criar experiências digitais inovadoras</span>. 
+                                Cursando Desenvolvimento de Software Multiplataforma pela FATEC Araras (Conclusão: Dezembro/2027), com foco em desenvolvimento web e backend.
+                            </p>
+                            <div class="hero-cta">
+                                <a href="https://wa.me/5519986124243" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-whatsapp"></i>
+                                    Vamos conversar
+                                </a>
+                                <a href="mailto:arthurdearaujomarques@gmail.com" class="btn btn-secondary">
+                                    <i class="fas fa-envelope"></i>
+                                    Enviar e-mail
+                                </a>
+                            </div>
+                            <div class="hero-stats">
+                                <div class="stat-box">
+                                    <h3 class="stat-number" data-target="2">0</h3>
+                                    <p class="stat-label">Anos de Experiência</p>
+                                </div>
+                                <div class="stat-box">
+                                    <h3 class="stat-number" data-target="10">0</h3>
+                                    <p class="stat-label">Projetos Concluídos</p>
+                                </div>
+                                <div class="stat-box">
+                                    <h3 class="stat-number" data-target="10">0</h3>
+                                    <p class="stat-label">Tecnologias</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-visual">
+                            <div class="terminal-window">
+                                <div class="terminal-header">
+                                    <span class="terminal-btn red"></span>
+                                    <span class="terminal-btn yellow"></span>
+                                    <span class="terminal-btn green"></span>
+                                </div>
+                                <div class="terminal-body">
+                                    <p><span class="prompt">arthur@dev:~$</span> whoami</p>
+                                    <p class="terminal-output">Desenvolvedor Full Stack</p>
+                                    <p class="terminal-output">Localização: <span class="text-cyan">Araras/SP</span></p>
+                                    <p class="terminal-output">Formação: <span class="text-green">FATEC Araras</span></p>
+                                    <p class="terminal-output">Conclusão: <span class="text-cyan">Dez/2027</span></p>
+                                    <p><span class="prompt">arthur@dev:~$</span> npm start</p>
+                                    <p class="terminal-output">✓ Servidor rodando em <span class="text-cyan">localhost:3000</span></p>
+                                    <p class="prompt-line"><span class="prompt">arthur@dev:~$</span> <span class="cursor-blink">_</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-hint">
+                        <span>Role para explorar</span>
+                        <i class="fas fa-chevron-down scroll-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Sobre -->
+                <div class="swiper-slide about-section">
+                    <div class="section-wrapper">
+                        <div class="section-header">
+                            <span class="section-tag">// Sobre Mim</span>
+                            <h2 class="section-title">Quem Sou Eu</h2>
+                        </div>
+                        <div class="about-content">
+                            <div class="about-text">
+                                <p class="about-intro">
+                                    Olá! Sou <strong>Arthur Marques</strong>, estudante de Tecnologia em Desenvolvimento de Software Multiplataforma na FATEC Araras.
+                                </p>
+                                <p>
+                                    Atualmente trabalho como <strong>Assistente Administrativo de Vendas na Kamaq Máquinas</strong>, onde desenvolvo habilidades de atendimento, 
+                                    organização e gestão de processos. Paralelamente, dedico meu tempo livre ao estudo e prática de desenvolvimento web e backend com Go.
+                                </p>
+                                <p>
+                                    Tenho grande interesse em <strong>Desenvolvimento Web e Backend (Go/Golang)</strong>, mas estou aberto a todas as áreas da TI, 
+                                    incluindo suporte técnico, infraestrutura, automação e análise de dados.
+                                </p>
+                                <p>
+                                    <strong>Localização:</strong> Araras/SP<br>
+                                    <strong>Disponibilidade:</strong> Mudança imediata para São Paulo<br>
+                                    <strong>Formação:</strong> FATEC Araras (Conclusão: Dezembro/2027)<br>
+                                    <strong>Idiomas:</strong> Português (nativo), Inglês (A2 → B1 em progresso)
+                                </p>
+                                <div class="tech-stack">
+                                    <h3>Stack Tecnológico</h3>
+                                    <div class="tech-grid">
+                                        <span class="tech-item"><i class="fab fa-js"></i> JavaScript</span>
+                                        <span class="tech-item"><i class="fab fa-react"></i> React</span>
+                                        <span class="tech-item"><i class="fab fa-html5"></i> HTML5</span>
+                                        <span class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</span>
+                                        <span class="tech-item"><i class="fab fa-php"></i> PHP</span>
+                                        <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+                                        <span class="tech-item"><span class="go-icon">Go</span> Go (Golang)</span>
+                                        <span class="tech-item"><i class="fas fa-database"></i> MySQL</span>
+                                        <span class="tech-item"><i class="fab fa-git-alt"></i> Git</span>
+                                        <span class="tech-item"><i class="fab fa-linux"></i> Kali Linux</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="skills-visual">
+                                <div class="skill-card">
+                                    <i class="fas fa-code skill-icon"></i>
+                                    <h4>Desenvolvimento Web</h4>
+                                    <p>HTML, CSS, JavaScript, React, PHP</p>
+                                </div>
+                                <div class="skill-card">
+                                    <i class="fas fa-bolt skill-icon"></i>
+                                    <h4>Backend com Go</h4>
+                                    <p>APIs REST, Concorrência, Gin Framework, Microserviços</p>
+                                </div>
+                                <div class="skill-card">
+                                    <i class="fas fa-database skill-icon"></i>
+                                    <h4>Banco de Dados</h4>
+                                    <p>MySQL, PostgreSQL, Modelagem de Dados</p>
+                                </div>
+                                <div class="skill-card">
+                                    <i class="fas fa-tools skill-icon"></i>
+                                    <h4>Ferramentas & DevOps</h4>
+                                    <p>Git, GitHub, Docker, VS Code</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 
+                    ═══════════════════════════════════════════════════════════
+                    Slide 3: PROJETOS (3 CARDS APENAS)
+                    Removido: Estudos em Cibersegurança
+                    Mantidos: Mini Kanban, Little Bunny's, E-commerce Streetwear
+                    ═══════════════════════════════════════════════════════════
+                -->
+                <div class="swiper-slide projects-section">
+                    <div class="section-wrapper">
+                        <div class="section-header">
+                            <span class="section-tag">// Meu Trabalho</span>
+                            <h2 class="section-title">Projetos em Destaque</h2>
+                        </div>
+                        <div class="projects-grid">
+                            
+                            <!-- PROJETO 1: Mini Kanban (DESTAQUE) -->
+                            <div class="project-card featured-project">
+                                <div class="project-header">
+                                    <i class="fas fa-folder-open"></i>
+                                    <div class="project-links">
+                                        <a href="https://github.com/thurzinho-0/mini-kanban-veritas" target="_blank" class="project-link" title="GitHub">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                        <a href="#" class="project-link" title="Demo">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <h3 class="project-title">📋 Mini Kanban - Veritas</h3>
+                                <p class="project-desc">
+                                    Sistema completo de gerenciamento de tarefas estilo Kanban desenvolvido como desafio técnico. 
+                                    Backend em <strong>Go (Gin Framework)</strong> com API REST e frontend em <strong>React 18</strong>. 
+                                    CRUD completo, movimentação entre colunas e interface responsiva com design Neobrutalism.
+                                </p>
+                                <div class="project-features">
+                                    <span class="feature-badge">✅ CRUD Completo</span>
+                                    <span class="feature-badge">✅ API REST</span>
+                                    <span class="feature-badge">✅ Responsivo</span>
+                                </div>
+                                <div class="project-tech">
+                                    <span class="tech-go">Go 1.21+</span>
+                                    <span class="tech-react">React 18</span>
+                                    <span>Gin Framework</span>
+                                    <span>Axios</span>
+                                    <span>CSS3</span>
+                                </div>
+                                <div class="project-footer">
+                                    <span class="project-status live">🟢 Projeto Recente</span>
+                                    <span class="project-date">Nov 2025</span>
+                                </div>
+                            </div>
+                            
+                            <!-- PROJETO 2: Little Bunny's E-commerce -->
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <i class="fas fa-folder-open"></i>
+                                    <a href="https://github.com/thurzinho-0" target="_blank" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                                <h3 class="project-title">🐰 Little Bunny's E-commerce</h3>
+                                <p class="project-desc">
+                                    Frontend responsivo para e-commerce fictício com carrinho interativo, 
+                                    carrossel de banners e layout moderno. Interface intuitiva e design clean.
+                                </p>
+                                <div class="project-tech">
+                                    <span>HTML5</span>
+                                    <span>CSS3</span>
+                                    <span>JavaScript</span>
+                                    <span>Swiper.js</span>
+                                </div>
+                            </div>
+                            
+                            <!-- PROJETO 3: E-commerce Streetwear -->
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <i class="fas fa-folder-open"></i>
+                                    <a href="https://github.com/thurzinho-0" target="_blank" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                                <h3 class="project-title">👕 E-commerce Streetwear</h3>
+                                <p class="project-desc">
+                                    Sistema full-stack com gestão de estoque sob demanda para camisetas streetwear. 
+                                    Banco de dados em MySQL com atualização em tempo real e painel administrativo.
+                                </p>
+                                <div class="project-tech">
+                                    <span>PHP</span>
+                                    <span>MySQL</span>
+                                    <span>JavaScript</span>
+                                    <span>CSS3</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <!-- Experiência Profissional -->
+                        <div class="experience-section">
+                            <h3 class="exp-title">💼 Experiência Profissional</h3>
+                            <div class="exp-card">
+                                <div class="exp-header">
+                                    <h4>Assistente Administrativo de Vendas</h4>
+                                    <span class="exp-period">Out/2024 - Presente</span>
+                                </div>
+                                <p class="exp-company">Kamaq Máquinas e Implementos Agrícolas</p>
+                                <ul class="exp-list">
+                                    <li>Atendimento a clientes e suporte técnico relacionado a peças e sistemas</li>
+                                    <li>Elaboração de orçamentos e controle de pedidos via planilhas e ERP</li>
+                                    <li>Organização de documentos e apoio à equipe comercial</li>
+                                    <li>Destaque: redução no tempo de resposta a pedidos comerciais</li>
+                                </ul>
+                            </div>
+                            <div class="exp-card">
+                                <div class="exp-header">
+                                    <h4>Tecnólogo em Desenvolvimento de Software Multiplataforma</h4>
+                                    <span class="exp-period">Ago/2024 - Dez/2027</span>
+                                </div>
+                                <p class="exp-company">FATEC Araras 'Antônio Brambila'</p>
+                                <ul class="exp-list">
+                                    <li>Foco em desenvolvimento web, bancos de dados e engenharia de software</li>
+                                    <li>Projetos práticos em React, Node.js, Go e MySQL</li>
+                                    <li>Previsão de conclusão: Dezembro de 2027</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 
+                    ═══════════════════════════════════════════════════════════
+                    Slide 4: CONTATO (MAILTO INTEGRATION)
+                    
+                    Solução: Mailto (sem servidor, super simples)
+                    Abre cliente de email do usuário com dados preenchidos
+                    
+                    Login: theusXS8292
+                    Email: arthurdearaujomarques@gmail.com
+                    Data/Hora: 2025-11-16 06:43:20 UTC
+                    ═══════════════════════════════════════════════════════════
+                -->
+                <div class="swiper-slide contact-section">
+                    <div class="section-wrapper">
+                        <div class="section-header">
+                            <span class="section-tag">// Entre em Contato</span>
+                            <h2 class="section-title">Vamos Construir Algo Juntos</h2>
+                        </div>
+                        <div class="contact-content">
+                            <!-- Coluna Esquerda: Informações de Contato -->
+                            <div class="contact-info">
+                                <p class="contact-intro">
+                                    Tem um projeto em mente? Vamos torná-lo realidade. 
+                                    Estou aberto a oportunidades de <strong>estágio</strong>, <strong>vagas júnior</strong> e <strong>projetos freelance</strong>.
+                                </p>
+                                <div class="contact-methods">
+                                    <a href="mailto:arthurdearaujomarques@gmail.com" class="contact-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <span>arthurdearaujomarques@gmail.com</span>
+                                    </a>
+                                    <a href="https://wa.me/5519986124243" class="contact-item" target="_blank">
+                                        <i class="fab fa-whatsapp"></i>
+                                        <span>(19) 98612-4243</span>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/arthur-marques-2bb47322a/" class="contact-item" target="_blank">
+                                        <i class="fab fa-linkedin"></i>
+                                        <span>linkedin.com/in/arthur-marques-2bb47322a</span>
+                                    </a>
+                                    <a href="https://github.com/thurzinho-0" class="contact-item" target="_blank">
+                                        <i class="fab fa-github"></i>
+                                        <span>github.com/thurzinho-0</span>
+                                    </a>
+                                    <div class="contact-item location-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Araras/SP — Disponibilidade para mudança imediata para São Paulo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Coluna Direita: Formulário com Mailto -->
+                            <form id="contactForm" class="contact-form" onsubmit="sendEmail(event)">
+                                
+                                <div class="form-group">
+                                    <input type="text" 
+                                           name="nome" 
+                                           id="name" 
+                                           placeholder="Seu Nome" 
+                                           required 
+                                           minlength="3" 
+                                           autocomplete="name" />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="email" 
+                                           name="email" 
+                                           id="email" 
+                                           placeholder="Seu E-mail" 
+                                           required 
+                                           autocomplete="email" />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="text" 
+                                           name="assunto" 
+                                           id="subject" 
+                                           placeholder="Assunto" 
+                                           required 
+                                           minlength="3" />
+                                </div>
+                                
+                                <div class="form-group">
+                                    <textarea name="mensagem" 
+                                              id="message" 
+                                              rows="5" 
+                                              placeholder="Sua Mensagem" 
+                                              required 
+                                              minlength="10"></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary btn-submit">
+                                    <i class="fas fa-envelope-open-text"></i>
+                                    Enviar via Email
+                                </button>
+                                
+                                <div id="formMessage" class="form-message"></div>
+                                
+                                <p class="form-note">
+                                    <i class="fas fa-info-circle"></i>
+                                    <small>Seu cliente de email padrão será aberto para enviar a mensagem.</small>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 <strong>Arthur Marques</strong> (thurzinho-0) | Desenvolvido com <i class="fas fa-heart"></i> e <i class="fas fa-mug-hot"></i></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js_main.js"></script>
+</body>
+</html>
